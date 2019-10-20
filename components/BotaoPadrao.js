@@ -6,7 +6,7 @@ import {
   Dimensions,
   StyleSheet,
 } from "react-native";
-var {height, width} = Dimensions.get('window');
+var {width} = Dimensions.get('window');
 
 const BotaoPadrao = ({
     wid,
