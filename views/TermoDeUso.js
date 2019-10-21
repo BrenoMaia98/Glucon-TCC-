@@ -15,7 +15,7 @@ export default class TermoDeUso extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center"}}>
-        <ImageBackground source={require('../assets/img/background/bgLuzes.jpg')} style={styles.background}>
+        <ImageBackground source={require('../assets/img/background/bgLuzes2.jpg')} style={styles.background}>
           <View style={styles.container}>
             <Text style={{fontFamily: 'Amita-Bold', fontSize:26}}>Termo de Responsabilidade</Text>
             <View style={
@@ -55,7 +55,6 @@ export default class TermoDeUso extends React.Component {
 
 const styles= StyleSheet.create({
   background:{
-    opacity: 0.7,
     zIndex:-1,
   },
   container: {

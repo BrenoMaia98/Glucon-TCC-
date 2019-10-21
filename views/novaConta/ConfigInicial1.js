@@ -52,7 +52,7 @@ export default class ConfigInicial1 extends React.Component {
   }
   render() {
     return (
-        <ImageBackground source={require('../../assets/img/background/bgLuzes.jpg')} style={styles.container}>
+        <ImageBackground source={require('../../assets/img/background/bgLuzes2.jpg')} style={styles.container}>
           <View style={{ width:width*0.9, alignItems: "center", justifyContent: "center",flex:1}}>
 	        <ScrollView>
             <View style={styles.contentArea}>
@@ -108,7 +108,6 @@ const styles= StyleSheet.create({
     textAlign:'center',
     flexDirection: 'column',
     alignItems: 'center',
-    opacity: 0.7,
   },
   contentArea:{
     alignItems:'center',

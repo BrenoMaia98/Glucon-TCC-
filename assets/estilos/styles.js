@@ -17,6 +17,7 @@ export const colors = {
 export const font = StyleSheet.create({
 	titulo:{fontFamily: 'Amita-Bold', fontSize:30, textAlign: 'center',color:"black"},
 	btnTextoPequeno:{fontFamily: 'Amita-Bold', fontSize:16, textAlign: 'center'},
+	btnTextoMedio:{fontFamily: 'Amita-Bold', fontSize:20, textAlign: 'center'},
 	btnTextoGrande:{fontFamily: 'Amita-Bold', fontSize:26, textAlign: 'center'},
 	amita:{fontFamily: 'Amita-Bold'},
 	jam:{fontFamily: 'Jam'},

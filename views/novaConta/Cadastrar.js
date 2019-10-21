@@ -15,7 +15,7 @@ import BotaoPadrao from '../../components/BotaoPadrao';
 import {font} from '../../assets/estilos/styles';
 
 var {height, width} = Dimensions.get('window');
-export default class ConfigInicial2 extends React.Component {
+export default class Cadastrar extends React.Component {
   constructor(props){
     super(props);
     this.state = {

@@ -25,15 +25,15 @@ export default class Home extends React.Component {
                 onPress={() => this.props.navigation.navigate("Login")
                 }
                 title="Entrar"
-                wid={30}
-                font={font.btnTextoPequeno}
+                wid={50}
+                font={font.btnTextoGrande}
               ></BotaoPadrao>
               <BotaoPadrao
                 onPress={() => this.props.navigation.navigate("Cadastrar")
                 }
                 title="Cadastrar-se"
-                wid={45}
-                font={font.btnTextoPequeno}
+                wid={50}
+                font={font.btnTextoGrande}
               ></BotaoPadrao>
             </View>
       </ImageBackground>

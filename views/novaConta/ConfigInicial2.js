@@ -44,7 +44,7 @@ export default class ConfigInicial1 extends React.Component {
   render() {
     return (
       <ImageBackground
-      source={require("../../assets/img/background/bgLuzes.jpg")}
+      source={require("../../assets/img/background/bgLuzes2.jpg")}
       style={styles.bgImage}
       >
             <View style={styles.container}>
@@ -78,7 +78,6 @@ export default class ConfigInicial1 extends React.Component {
                     Hiperglicemia :
                   </Text>
                   <Input
-                    secureTextEntry={true}
                     onChangeText={hiperglicemia => this.setState({ hiperglicemia })}
                   />
                 </Item>
@@ -144,7 +143,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
     flexDirection: 'column',
     alignItems: 'center',
-    opacity: 0.7,
   },
   container: { 
     width:width*0.9, 

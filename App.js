@@ -1,8 +1,8 @@
 import TermoDeUso from './views/TermoDeUso';
 import TelaCarregamento from './views/TelaCarregamento';
-import Cadastrar from './views/conta/Cadastrar';
-import ConfigInicial1 from './views/conta/ConfigInicial1';
-import ConfigInicial2 from './views/conta/ConfigInicial2';
+import Cadastrar from './views/novaConta/Cadastrar';
+import ConfigInicial1 from './views/novaConta/ConfigInicial1';
+import ConfigInicial2 from './views/novaConta/ConfigInicial2';
 import Login from './views/principal/Login';
 import Home from './views/principal/Home';
 import MenuOpcoes from './views/operacoes/MenuOpcoes';
@@ -13,7 +13,7 @@ import { AppLoading } from 'expo';
 import React from "react";
 import { 
   createStackNavigator, 
-  createAppContainer, 
+  nreateAppNovaContainer, 
 } from 'react-navigation';
 
 
@@ -30,7 +30,7 @@ const AppNavigator = createStackNavigator(
     RegistroNivel:  RegistroNivel,
   },
   {
-    initialRouteName: "TermoDeUso",
+    initialRouteName: "Login",
     defaultNavigationOptions:{
       header:null
     }
@@ -38,7 +38,7 @@ const AppNavigator = createStackNavigator(
 
 );
 //  initialRouteName: "TermoDeUso",
-const AppContainer = createAppContainer(AppNavigator);
+const nppNovaContainer = nreateAppNovaContainer(AppNavigator);
 
 export default class App extends React.Component {
   constructor(props){
@@ -61,7 +61,7 @@ export default class App extends React.Component {
       return <AppLoading />;
     }
   return (
-    <AppContainer />
+    <nppNovaContainer />
   );
   }
 }
