@@ -47,11 +47,37 @@ export default class NovoRegistro extends React.Component {
     super(props);
     this.state = {
       nivel:null,
+      nivelSelecionado:null,
       data:data2,
       alimento: alimentos,
       editar:true,
       refBase:"Nenhuma selecionada",
     }
+  }
+  _verificaNovoNivel = (nivel) => {
+      console.log("60 , 80 , 120 , 140 : entrou '"+nivel+"'");
+      if(nivel.length == 0 || nivel == null){
+        console.log("FOIIII")
+          this.setState({nivelSelecionado:null});
+        }
+
+      if( nivel <= this.state.data.hipoglicemia)
+        this.setState({nivelSelecionado:"hipo"});
+      else{
+          if( nivel  <= this.state.data.minIdeal)
+          this.setState({nivelSelecionado:"minAlerta"});
+          else{
+              if( nivel <= this.state.data.maxIdeal)
+              this.setState({nivelSelecionado:"normal"});
+              else{
+                  if( nivel <= this.state.data.hiperglicemia)
+                  this.setState({nivelSelecionado:"maxAlerta"});
+                  else{
+                    this.setState({nivelSelecionado:"hiper"});
+                    }
+                }
+            }
+        }
   }
   render() {
     return (
@@ -66,6 +92,7 @@ export default class NovoRegistro extends React.Component {
                                 <View style={{    borderBottomColor:"black",     borderBottomWidth:2}} >
                                     <Input
                                     onChangeText={nivel =>{
+                                        this._verificaNovoNivel(nivel);
                                         this.setState({ nivel })
                                     }
                                     }
@@ -74,7 +101,7 @@ export default class NovoRegistro extends React.Component {
                             </View>
                         </Form>
 
-                        <LuzesNivel nivel={this.state.nivel}></LuzesNivel>            
+                        <LuzesNivel nivel={this.state.nivelSelecionado}></LuzesNivel>            
                         <View style={{flexDirection:"row"}}>
                             <Text style={[font.titulo,{color:"#0e6820"}]}>Medicamentos</Text>
                             <Icon style={{alignSelf:"center",paddingLeft:20}} 
@@ -170,8 +197,10 @@ export default class NovoRegistro extends React.Component {
                     <View style={styles.alignButtons}>
 
                         <BotaoPadrao onPress={() => this.props.navigation.navigate("MenuOpcoes")}
+                        font={[font.btnTextoGrande,{fontFamily:"Jam",padding:10}]}
                             title="Voltar" wid={40}></BotaoPadrao>
-                        <BotaoPadrao onPress={() => this.props.navigation.navigate("Perfil")}
+                        <BotaoPadrao onPress={() => console.log("Em construção")}
+                        font={[font.btnTextoGrande,{fontFamily:"Jam",padding:10}]}
                             title="Editar" wid={40}></BotaoPadrao>
                     </View>
                 </ScrollView>
@@ -214,7 +243,7 @@ const styles= StyleSheet.create({
       flexDirection:"row",
       justifyContent:"space-around", 
       width:width, 
-      paddingTop:20,
+      paddingTop:50,
       paddingBottom:20
     },
 });

@@ -134,8 +134,10 @@ export default class Perfil extends React.Component {
                     <View style={styles.alignButtons}>
 
                         <BotaoPadrao onPress={() => this.props.navigation.navigate("MenuOpcoes")}
+                        font={[font.btnTextoGrande,{fontFamily:"Jam",padding:10}]}
                             title="Voltar" wid={40}></BotaoPadrao>
-                        <BotaoPadrao onPress={() => this.props.navigation.navigate("Perfil")}
+                        <BotaoPadrao onPress={() => console.log("Em construção")}
+                        font={[font.btnTextoGrande,{fontFamily:"Jam",padding:10}]}
                             title="Editar" wid={40}></BotaoPadrao>
                     </View>
                 </ScrollView>

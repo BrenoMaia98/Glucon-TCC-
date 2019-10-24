@@ -13,11 +13,11 @@ const LuzesNivel = ({
 }) => {
     return(
         <View style={styles.row}>
-            <IndicadorInsulina color="skyblue"  opacity={0.2} ></IndicadorInsulina>
-            <IndicadorInsulina color="orange"   opacity={0.2} ></IndicadorInsulina>
-            <IndicadorInsulina color="lime"    opacity={0.2} ></IndicadorInsulina>
-            <IndicadorInsulina color="orange"   opacity={0.2} ></IndicadorInsulina>
-            <IndicadorInsulina color="red"      opacity={0.2} ></IndicadorInsulina>
+            <IndicadorInsulina color="skyblue"  opacity={0.2} id="hipo"         nivel={nivel}></IndicadorInsulina>
+            <IndicadorInsulina color="orange"   opacity={0.2} id="minAlerta"    nivel={nivel}></IndicadorInsulina>
+            <IndicadorInsulina color="lime"     opacity={0.2} id="normal"       nivel={nivel}></IndicadorInsulina>
+            <IndicadorInsulina color="orange"   opacity={0.2} id="maxAlerta"    nivel={nivel}></IndicadorInsulina>
+            <IndicadorInsulina color="red"      opacity={0.2} id="hiper"        nivel={nivel} ></IndicadorInsulina>
         </View>
         
     )

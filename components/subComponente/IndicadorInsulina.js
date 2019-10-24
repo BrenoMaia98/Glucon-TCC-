@@ -8,7 +8,9 @@ var {width} = Dimensions.get('window');
 
 const IndicadorInsulina = ({
     opacity,
-    color
+    color,
+    nivel,
+    id,
 }) => {
     return(
              	<View style={{
@@ -18,7 +20,7 @@ const IndicadorInsulina = ({
                     borderColor:"black",
                     borderRadius:360,
                     backgroundColor:color,
-                    opacity:opacity,
+                    opacity:nivel===id?1:opacity,
                 }}></View>
     )
 }
