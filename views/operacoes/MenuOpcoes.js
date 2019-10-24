@@ -28,7 +28,7 @@ export default class MenuOpcoes extends React.Component {
                   font={[font.btnTextoGrande,{fontFamily:"Jam",padding:10}]}
           ></BotaoPadrao>
           <BotaoPadrao
-                  onPress={() => this.props.navigation.navigate("Registro")
+                  onPress={() => this.props.navigation.navigate("NovoRegistro")
                 }
                 title="Novo Registro"
                 wid={55}

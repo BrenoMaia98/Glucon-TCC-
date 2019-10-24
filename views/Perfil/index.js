@@ -8,17 +8,13 @@ import {
   Dimensions,
   StyleSheet,
 } from "react-native";
-import {
-  Form,
-  Item,
-  Input,
-} from "native-base";
 import BotaoPadrao from '../../components/BotaoPadrao';
 import {font} from '../../assets/estilos/styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const data2 ={
     email:"emailteste@gmail.com",
-    remedios:[
+    medicamento:[
         {nome:"medicamento 1", vezes:1, mg:45},
         {nome:"medicamento 2", vezes:2, mg:20},
         {nome:"medicamento 3", vezes:1, mg:75},
@@ -39,9 +35,20 @@ export default class Perfil extends React.Component {
       email   : ' ',
       senha: ' ',
       data:data2,
-      editar:true,
+      editar:false,
+      removerMedicamento:false,
     }
-  }
+  };
+  _removerMedicamento  = (id) => {
+      console.log("entrei")
+
+      if(this.state.removerMedicamento){
+          var data = this.state.data;
+          this.state.data.medicamento.splice(id);
+          this.setState({data});
+        }
+  };
+
   render() {
     return (
         <ImageBackground source={require('../../assets/img/background/perfilbg.jpg')} style={styles.container}>
@@ -50,10 +57,25 @@ export default class Perfil extends React.Component {
                     <Text style={[font.jam,{fontSize:60, alignSelf:"center"}]}>Perfil</Text>
                     <View style={{alignItems: "flex-start", justifyContent: "center", paddingLeft:20}}>
                             <Text style={[font.titulo,{color:"#0e6820"}]}>E-mail: </Text>
-                            <Text style={[{fontFamily:"Jam", fontSize:20,paddingLeft:20, textDecorationLine:"underline"}]}>{this.state.data.email}</Text>
+                            <Text style={{fontFamily:"Jam", fontSize:20,paddingLeft:20, textDecorationLine:"underline"}}>{this.state.data.email}</Text>
                         <View style={{flexDirection:"row"}}>
                             <Text style={[font.titulo,{color:"#0e6820"}]}>Medicamentos</Text>
-                            {this.state.editar?<Text style={{alignSelf:"center",paddingLeft:40}}>Add</Text>:null}
+                            
+                            {this.state.editar
+                                ?   null
+                                :  
+                                <View style={{flexDirection:"row"}}>
+
+                                <Icon style={{alignSelf:"center",paddingLeft:20}} 
+                                name="plus-circle" size={40} color="#0e6820" 
+                                onPress={() => console.log("Funfou :D")}/>
+                        <Icon style={{alignSelf:"center",paddingLeft:10}} 
+                                        name="trash" size={40} color="#900" 
+                                        onPress={() => {this.setState({removerMedicamento:!this.state.removerMedicamento},() => console.log(this.state.removerMedicamento));
+                                        }}/>
+                                        </View>
+
+                            }
                         </View>
                         <View style={styles.row}>
                             <View style={{width:width*0.45,textAlign:"center",justifyContent:"center"}}>
@@ -67,11 +89,11 @@ export default class Perfil extends React.Component {
                             </View>
                         </View>
                         <FlatList
-                            data={this.state.data.remedios}      
-                            extraData={this.state.data.remedios}      
-                            renderItem={({ item: rowData }) => {
+                            data={this.state.data.medicamento}      
+                            extraData={this.state.data.medicamento}      
+                            renderItem={({ item: rowData, index:id}) => {
                                 return(
-                                    <View style={styles.row}>
+                                    <View style={[styles.row]} onPress={() => {this._removerMedicamento(id)} }>
                                         <View style={{width:width*0.45,textAlign:"center",justifyContent:"center"}}>
                                             <Text style={font.btnTextoPequeno}>{rowData.nome}</Text>
                                         </View>
