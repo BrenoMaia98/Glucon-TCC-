@@ -12,9 +12,9 @@ import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
 import React from "react";
-import { 
-  createStackNavigator, 
-  createAppContainer, 
+import {
+  createStackNavigator,
+  createAppContainer,
 } from 'react-navigation';
 
 
