@@ -32,7 +32,7 @@ const AppNavigator = createStackNavigator(
     NovoRegistro:  NovoRegistro,
   },
   {
-    initialRouteName: "NovoRegistro",
+    initialRouteName: "TermoDeUso",
     defaultNavigationOptions:{
       header:null
     }

@@ -29,7 +29,7 @@ export default class Home extends React.Component {
                 font={font.btnTextoGrande}
               ></BotaoPadrao>
               <BotaoPadrao
-                onPress={() => this.props.navigation.navigate("Cadastrar")
+                onPress={() => this.props.navigation.navigate("TermoDeUso")
                 }
                 title="Cadastrar-se"
                 wid={50}

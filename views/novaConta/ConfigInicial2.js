@@ -116,7 +116,7 @@ export default class ConfigInicial1 extends React.Component {
                 }
                 title="Voltar"
                 wid={30}
-                font={font.btnTextoPequeno}
+                font={{ fontSize:25, textAlign: 'center',color:"#777"}}
               ></BotaoPadrao>
               <BotaoPadrao
                 onPress={() =>
@@ -126,7 +126,7 @@ export default class ConfigInicial1 extends React.Component {
                 }
                 title="Finalizar Cadastro"
                 wid={45}
-                font={font.btnTextoPequeno}
+                font={{ fontSize:20, textAlign: 'center',color:"#777"}}
               ></BotaoPadrao>
             </View>
           </ScrollView>
@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
   alignButons: {
     padding:10,
     flexDirection: "row",
-    justifyContent:"space-around"
+    justifyContent:"space-around",
+    alignItems:"center"
   }
 });
