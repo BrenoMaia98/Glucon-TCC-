@@ -1,5 +1,5 @@
 import React from "react";
-import { 
+import {
   View,
   Text,
   FlatList,
@@ -38,7 +38,7 @@ const alimentos =[
     {nome:"alimento 3"                      , quantidade:1 , medida:"escumadeira"},
     {nome:"alimento quatro com algo a mais" , quantidade:10 , medida:"unidade"},
     {nome:"alimento 1"                      , quantidade:30 , medida:"unidade"},
-    
+
 ]
 
 var {height, width} = Dimensions.get('window');
@@ -101,14 +101,14 @@ export default class NovoRegistro extends React.Component {
                             </View>
                         </Form>
 
-                        <LuzesNivel nivel={this.state.nivelSelecionado}></LuzesNivel>            
+                        <LuzesNivel nivel={this.state.nivelSelecionado}></LuzesNivel>
                         <View style={{flexDirection:"row"}}>
                             <Text style={[font.titulo,{color:"#0e6820"}]}>Medicamentos</Text>
-                            <Icon style={{alignSelf:"center",paddingLeft:20}} 
-                                name="plus-circle" size={40} color="#0e6820" 
+                            <Icon style={{alignSelf:"center",paddingLeft:20}}
+                                name="plus-circle" size={40} color="#0e6820"
                                 onPress={() => console.log("Funfou :D")}/>
-                            <Icon style={{alignSelf:"center",paddingLeft:10}} 
-                                name="trash" size={40} color="#900" 
+                            <Icon style={{alignSelf:"center",paddingLeft:10}}
+                                name="trash" size={40} color="#900"
                                 onPress={() => {this.setState({removerMedicamento:!this.state.removerMedicamento},() => console.log(this.state.removerMedicamento));}}/>
                         </View>
                         <View style={styles.row}>
@@ -124,8 +124,8 @@ export default class NovoRegistro extends React.Component {
                         </View>
 
                         <FlatList
-                            data={this.state.data.remedios}      
-                            extraData={this.state.data.remedios}      
+                            data={this.state.data.remedios}
+                            extraData={this.state.data.remedios}
                             renderItem={({ item: rowData }) => {
                                 return(
                                     <View style={styles.row}>
@@ -146,18 +146,18 @@ export default class NovoRegistro extends React.Component {
 
                         <View style={{flexDirection:"row"}}>
                             <Text style={[font.titulo,{color:"#0e6820"}]}>Refeição base</Text>
-                            <Icon style={{alignSelf:"center",paddingLeft:20}} 
-                                name="edit" size={40} color="#0e6820" 
+                            <Icon style={{alignSelf:"center",paddingLeft:20}}
+                                name="edit" size={40} color="#0e6820"
                                 onPress={() => console.log("Funfou :D")}/>
                         </View>
                             <Text style={{fontFamily:"Jam", fontSize:25,alignSelf:"center", textDecorationLine:"underline", paddingBottom:20, paddingTop:20}}>{this.state.refBase}</Text>
                         <View style={{flexDirection:"row"}}>
                             <Text style={{fontFamily: 'Amita-Bold', fontSize:26, textAlign: 'center',color:"#0e6820"}}>Alimento/bebidas</Text>
-                            <Icon style={{alignSelf:"center",paddingLeft:20}} 
-                                name="plus-circle" size={40} color="#0e6820" 
+                            <Icon style={{alignSelf:"center",paddingLeft:20}}
+                                name="plus-circle" size={40} color="#0e6820"
                                 onPress={() => console.log("Funfou :D")}/>
-                            <Icon style={{alignSelf:"center",paddingLeft:10}} 
-                                name="trash" size={40} color="#900" 
+                            <Icon style={{alignSelf:"center",paddingLeft:10}}
+                                name="trash" size={40} color="#900"
                                 onPress={() => {this.setState({removerMedicamento:!this.state.removerMedicamento},() => console.log(this.state.removerMedicamento));}}/>
                         </View>
                         <View style={styles.row}>
@@ -173,8 +173,8 @@ export default class NovoRegistro extends React.Component {
                         </View>
 
                         <FlatList
-                            data={this.state.alimento}      
-                            extraData={this.state.alimento}      
+                            data={this.state.alimento}
+                            extraData={this.state.alimento}
                             renderItem={({ item: rowData }) => {
                                 return(
                                     <View style={styles.row}>
@@ -192,7 +192,7 @@ export default class NovoRegistro extends React.Component {
                             }}
                             keyExtractor={(item, index) => index.toString()}
                             />
-                        
+
                     </View>
                     <View style={styles.alignButtons}>
 
@@ -241,8 +241,8 @@ const styles= StyleSheet.create({
   },
   alignButtons:{
       flexDirection:"row",
-      justifyContent:"space-around", 
-      width:width, 
+      justifyContent:"space-around",
+      width:width,
       paddingTop:50,
       paddingBottom:20
     },

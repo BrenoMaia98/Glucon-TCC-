@@ -8,15 +8,15 @@ import {
 } from 'react-native';
 import { Form, Item, Input } from 'native-base';
 
-import BotaoPadrao from '../../components/BotaoPadrao';
-import { font } from '../../assets/estilos/styles';
+import BotaoPadrao from '../../../components/BotaoPadrao';
+import { font } from '../../../assets/estilos/styles';
 var { height, width } = Dimensions.get('window');
 
-export default class Login extends React.Component {
+export default class esqueciSenha extends React.Component {
     render() {
         return (
             <ImageBackground
-                source={require('../../assets/img/background/bgLuzesInverso.jpg')}
+                source={require('../../../assets/img/background/bgLuzesInverso.jpg')}
                 style={styles.bgImage}
             >
                 <View
@@ -27,21 +27,19 @@ export default class Login extends React.Component {
                     }}
                 >
                     <Text style={[font.jam, { fontSize: 60 }]}>DM Control</Text>
-                    <Text style={font.titulo}>
-                        {' '}
-                        Diabetes Mellitus Controler
-                    </Text>
+                    <Text style={font.titulo}>Esqueci minha senha</Text>
                     <Form style={styles.forms}>
                         <Item style={styles.formItem}>
-                            <Text style={{ fontFamily: 'Jam', fontSize: 25 }}>
-                                Login :
+                            <Text> Insira o seu email cadastrado abaixo:</Text>
+                            <Text style={{ fontFamily: 'Jam', fontSize: 20 }}>
+                                Email :
                             </Text>
                             <Input
-                                onChangeText={login => this.setState({ login })}
+                                onChangeText={login => this.setState({ email })}
                             />
                         </Item>
                         <Item style={styles.formItem}>
-                            <Text style={{ fontFamily: 'Jam', fontSize: 25 }}>
+                            <Text style={{ fontFamily: 'Jam', fontSize: 20 }}>
                                 Senha :
                             </Text>
                             <Input
@@ -49,12 +47,7 @@ export default class Login extends React.Component {
                             />
                         </Item>
                     </Form>
-                    <Text
-                        style={styles.esqueciSenha}
-                        onPress={() => {
-                            this.props.navigation.navigate('EsqueciSenha');
-                        }}
-                    >
+                    <Text style={styles.esqueciSenha}>
                         esqueci minha senha.
                     </Text>
                     <BotaoPadrao
@@ -81,7 +74,6 @@ const styles = StyleSheet.create({
     },
     esqueciSenha: {
         textDecorationLine: 'underline',
-        fontSize: 16,
     },
     forms: {
         justifyContent: 'space-around',

@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import { Form, Item, Input, Alert } from 'native-base';
 
-import BotaoPadrao from '../../components/BotaoPadrao';
-import { font, colors } from '../../assets/estilos/styles';
+import BotaoPadrao from '../../../components/BotaoPadrao';
+import { font, colors } from '../../../assets/estilos/styles';
 
 var { height, width } = Dimensions.get('window');
 export default class ConfigInicial1 extends React.Component {
@@ -47,7 +47,7 @@ export default class ConfigInicial1 extends React.Component {
     render() {
         return (
             <ImageBackground
-                source={require('../../assets/img/background/bgLuzes2.jpg')}
+                source={require('../../../assets/img/background/bgLuzes2.jpg')}
                 style={styles.bgImage}
             >
                 <View style={styles.container}>

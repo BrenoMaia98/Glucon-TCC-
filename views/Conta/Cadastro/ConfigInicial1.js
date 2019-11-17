@@ -11,8 +11,8 @@ import {
 import { Form, Picker, Icon, Alert } from 'native-base';
 
 import { ContaInfo } from './ContaInfo';
-import BotaoPadrao from '../../components/BotaoPadrao';
-import { font } from '../../assets/estilos/styles';
+import BotaoPadrao from '../../../components/BotaoPadrao';
+import { font } from '../../../assets/estilos/styles';
 
 var { height, width } = Dimensions.get('window');
 const box = StyleSheet.create({
@@ -97,7 +97,7 @@ export default class ConfigInicial1 extends React.Component {
     render() {
         return (
             <ImageBackground
-                source={require('../../assets/img/background/bgLuzes2.jpg')}
+                source={require('../../../assets/img/background/bgLuzes2.jpg')}
                 style={styles.container}
             >
                 <View

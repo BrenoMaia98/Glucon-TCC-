@@ -8,8 +8,8 @@ import {
     StyleSheet,
 } from 'react-native';
 import { Form, Item, Input } from 'native-base';
-import BotaoPadrao from '../../components/BotaoPadrao';
-import { font } from '../../assets/estilos/styles';
+import BotaoPadrao from '../../../components/BotaoPadrao';
+import { font } from '../../../assets/estilos/styles';
 import { ContaInfo } from './ContaInfo';
 var { height, width } = Dimensions.get('window');
 export default class Cadastrar extends React.Component {
@@ -21,10 +21,14 @@ export default class Cadastrar extends React.Component {
             senhaConfirmar: ' ',
         };
     }
+    _validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
     render() {
         return (
             <ImageBackground
-                source={require('../../assets/img/background/bgLuzes2.jpg')}
+                source={require('../../../assets/img/background/bgLuzes2.jpg')}
                 style={styles.container}
             >
                 <View
@@ -109,11 +113,31 @@ export default class Cadastrar extends React.Component {
                                     this.state.senha ==
                                     this.state.senhaConfirmar
                                 ) {
-                                    ContaInfo.setEmail(this.state.email);
-                                    ContaInfo.setSenha(this.state.senha);
-                                    this.props.navigation.navigate(
-                                        'ConfigInicial1'
-                                    );
+                                    if (
+                                        this.state.email != '' &&
+                                        this.state.email != ' ' &&
+                                        this.state.senha != '' &&
+                                        this.state.senha != ' '
+                                    ) {
+                                        if(this._validateEmail(this.state.email)){
+
+                                            ContaInfo.setEmail(this.state.email);
+                                            ContaInfo.setSenha(this.state.senha);
+                                            this.props.navigation.navigate(
+                                                'ConfigInicial1'
+                                                );
+                                            }else {
+                                                Alert.alert(
+                                                    'Erro',
+                                                    "O email inserido não é válido!"
+                                                );
+                                            }
+                                    }else {
+                                        Alert.alert(
+                                            'Erro',
+                                            "A senha e/ou o campo de  email devem ser preenchidos!"
+                                        );
+                                    }
                                 } else {
                                     Alert.alert(
                                         'Erro',

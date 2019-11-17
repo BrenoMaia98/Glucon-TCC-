@@ -1,5 +1,5 @@
 import React from "react";
-import { 
+import {
   View,
   Text,
   FlatList,
@@ -60,17 +60,17 @@ export default class Perfil extends React.Component {
                             <Text style={{fontFamily:"Jam", fontSize:20,paddingLeft:20, textDecorationLine:"underline"}}>{this.state.data.email}</Text>
                         <View style={{flexDirection:"row"}}>
                             <Text style={[font.titulo,{color:"#0e6820"}]}>Medicamentos</Text>
-                            
+
                             {this.state.editar
                                 ?   null
-                                :  
+                                :
                                 <View style={{flexDirection:"row"}}>
 
-                                <Icon style={{alignSelf:"center",paddingLeft:20}} 
-                                name="plus-circle" size={40} color="#0e6820" 
+                                <Icon style={{alignSelf:"center",paddingLeft:20}}
+                                name="plus-circle" size={40} color="#0e6820"
                                 onPress={() => console.log("Funfou :D")}/>
-                        <Icon style={{alignSelf:"center",paddingLeft:10}} 
-                                        name="trash" size={40} color="#900" 
+                        <Icon style={{alignSelf:"center",paddingLeft:10}}
+                                        name="trash" size={40} color="#900"
                                         onPress={() => {this.setState({removerMedicamento:!this.state.removerMedicamento},() => console.log(this.state.removerMedicamento));
                                         }}/>
                                         </View>
@@ -89,8 +89,8 @@ export default class Perfil extends React.Component {
                             </View>
                         </View>
                         <FlatList
-                            data={this.state.data.medicamento}      
-                            extraData={this.state.data.medicamento}      
+                            data={this.state.data.medicamento}
+                            extraData={this.state.data.medicamento}
                             renderItem={({ item: rowData, index:id}) => {
                                 return(
                                     <View style={[styles.row]} onPress={() => {this._removerMedicamento(id)} }>
@@ -129,7 +129,7 @@ export default class Perfil extends React.Component {
                             <Text style={[font.btnTextoMedio,{color:"#0e6820", paddingLeft:20,}]}>Hipoglicemia</Text>
                             <Text style={[font.btnTextoMedio,{color:"black", paddingLeft:20, textDecorationLine:"underline"}]}>{this.state.data.hipoglicemia}</Text>
                         </View>
-                        
+
                     </View>
                     <View style={styles.alignButtons}>
 
@@ -178,8 +178,8 @@ const styles= StyleSheet.create({
   },
   alignButtons:{
       flexDirection:"row",
-      justifyContent:"space-around", 
-      width:width, 
+      justifyContent:"space-around",
+      width:width,
       paddingTop:20,
       paddingBottom:20
     },
