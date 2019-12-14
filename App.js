@@ -4,11 +4,11 @@ import Cadastrar from './views/Conta/Cadastro/Cadastrar';
 import ConfigInicial1 from './views/Conta/Cadastro/ConfigInicial1';
 import ConfigInicial2 from './views/Conta/Cadastro/ConfigInicial2';
 import EsqueciSenha from './views/Conta/EsqueciMinhaSenha/EsqueciSenha';
-import Perfil from './views/Perfil/index';
+import Perfil from './views/Perfil/perfil';
 import Login from './views/principal/Login';
 import Home from './views/principal/Home';
 import MenuOpcoes from './views/operacoes/MenuOpcoes';
-import NovoRegistro from './views/operacoes/novoRegistro/index';
+import NovoRegistro from './views/operacoes/novoRegistro/novoRegistro';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
@@ -30,7 +30,7 @@ const AppNavigator = createStackNavigator(
         NovoRegistro: NovoRegistro,
     },
     {
-        initialRouteName: 'TermoDeUso',
+        initialRouteName: 'NovoRegistro',
         defaultNavigationOptions: {
             header: null,
         },
@@ -49,7 +49,7 @@ export default class App extends React.Component {
         await Font.loadAsync({
             'Amita-Regular': require('./assets/fonts/Amita-Regular.ttf'),
             'Amita-Bold': require('./assets/fonts/Amita-Bold.ttf'),
-            Jam: require('./assets/fonts/JamSessions.ttf'),
+            'Jam': require('./assets/fonts/JamSessions.ttf'),
         });
 
         this.setState({ loading: false });
