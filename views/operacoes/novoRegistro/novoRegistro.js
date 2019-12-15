@@ -18,57 +18,59 @@ import BotaoPadrao from '../../../components/BotaoPadrao';
 import LuzesNivel from '../../../components/LuzesNivel';
 import { font } from '../../../assets/estilos/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, TextInput } from "react-native";
+import { Alimentos } from "../../../assets/Database/alimentos";
 
 const reqDadosPerfil = {
-    remedios: [
+    reqRemedios: [
         { nome: "medicamento 1", vezes: 1, mg: 45 },
         { nome: "medicamento 2", vezes: 2, mg: 20 },
         { nome: "medicamento 3", vezes: 1, mg: 75 },
         { nome: "medicamento 4", vezes: 3, mg: 30 },
     ],
-    reqAlimentos: [
-        { nome: "Um alimento com um nome grande demais ", quantidade: 1, medida: "copo americano" },
-        { nome: "alimento 1", quantidade: 2, medida: "copo americano" },
-        { nome: "alimento numero 2", quantidade: 1, medida: "escumadeira" },
-        { nome: "alimento 3", quantidade: 1, medida: "escumadeira" },
-        { nome: "alimento quatro com algo a mais", quantidade: 10, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-        { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    reqAlimentos: Alimentos,
+    // [
+    //     { nome: "Um alimento com um nome grande demais ", quantidade: 1, medida: "copo americano" },
+    //     { nome: "alimento 1", quantidade: 2, medida: "copo americano" },
+    //     { nome: "alimento numero 2", quantidade: 1, medida: "escumadeira" },
+    //     { nome: "alimento 3", quantidade: 1, medida: "escumadeira" },
+    //     { nome: "alimento quatro com algo a mais", quantidade: 10, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
+    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
 
-    ],
+    // ],
     hiperglicemia: 140,
     maxIdeal: 120,
     minIdeal: 80,
@@ -93,12 +95,19 @@ export default class NovoRegistro extends React.Component {
             removerMedicamento: false,
             remClickMedicamento: -1,
             removerAlimento: false,
+            remClickAlimento: -1,
 
-
-            modalVisible: false,
+            modalSelectAlimento: false,
+            filterAlimentos:[],
+            modalSelectMedicamento: false,
             modalInfo: false,
         }
     }
+    filterByValue = (string)  =>{
+        return this.state.data.reqAlimentos.filter(
+            o => o.nome.toLowerCase().includes(string.toLowerCase()));
+    }
+
     _verificaNovoNivel = (nivel) => {
         console.log("60 , 80 , 120 , 140 : entrou '" + nivel + "'");
         if (nivel.length == 0 || nivel == null) {
@@ -129,23 +138,30 @@ export default class NovoRegistro extends React.Component {
         this.setState({ alimentosSelecionados })
     }
 
+    _removerAlimento = (index) => {
+        if (this.state.remClickAlimento === index && this.state.removerAlimento === true) {
+            let alimentosSelecionados = this.state.alimentosSelecionados;
+            alimentosSelecionados.splice(index, 1);
+            this.setState({ alimentosSelecionados, remClickAlimento: -1 })
+        } else {
+            this.setState({ remClickAlimento: index })
+        }
+    }
+
     _addMedicamento = (rowData) => {
-        console.log(rowData)
         let remediosSelecionados = this.state.remediosSelecionados;
-        console.log(remediosSelecionados)
         remediosSelecionados.push({ nome: rowData.nome, vezes: rowData.vezes, mg: rowData.mg });
         this.setState({ remediosSelecionados })
     }
 
     _removerMedicamento = (index) => {
-        console.log({index,clicadoAntes:this.state.remClickMedicamento});
-        if (this.state.remClickMedicamento === index) {
+        if (this.state.remClickMedicamento === index && this.state.removerMedicamento === true) {
             let remediosSelecionados = this.state.remediosSelecionados;
-            console.log(remediosSelecionados);
-            remediosSelecionados=  remediosSelecionados.splice(index, 1);
-            this.setState({ remediosSelecionados,remClickMedicamento:-1 })
-        }else{
-            this.setState({remClickMedicamento:index})
+            console.log("antes", remediosSelecionados);
+            remediosSelecionados.splice(index, 1);
+            this.setState({ remediosSelecionados, remClickMedicamento: -1 })
+        } else {
+            this.setState({ remClickMedicamento: index })
         }
     }
 
@@ -182,19 +198,19 @@ export default class NovoRegistro extends React.Component {
 
                             <View style={{ flexDirection: "row" }}>
                                 <Text style={[font.titulo, { color: "#0e6820" }]}>Medicamentos</Text>
-                                {this.state.removerAlimento ?
+                                {this.state.removerMedicamento ?
                                     <Icon style={{ alignSelf: "center", paddingLeft: 20 }}
                                         name="info-circle" size={35} color="#55f"
                                         onPress={() => this.setState({ modalInfo: !this.state.modalInfo })} />
                                     :
                                     <Icon style={{ alignSelf: "center", paddingLeft: 20 }}
                                         name="plus-circle" size={35} color="#0e6820"
-                                        onPress={() => this.setState({ modalVisible: !this.state.modalVisible })} />
+                                        onPress={() => this.setState({ modalSelectMedicamento: !this.state.modalSelectMedicamento })} />
                                 }
                                 <Icon style={{ alignSelf: "center", paddingLeft: 10 }}
                                     name="trash" size={35} color="#900"
                                     onPress={() => {
-                                        this.setState({ removerAlimento: !this.state.removerAlimento, remClickMedicamento: -1 });
+                                        this.setState({ removerMedicamento: !this.state.removerMedicamento, remClickMedicamento: -1 });
                                     }} />
                             </View>
 
@@ -212,16 +228,16 @@ export default class NovoRegistro extends React.Component {
                             <FlatList
                                 extraData={this.state}
                                 data={this.state.remediosSelecionados}
-                                renderItem={({ item: rowData, index }) => {
+                                renderItem={({ item: rowData, index: index }) => {
                                     return (
                                         <TouchableOpacity style={[styles.row,
                                         {
                                             backgroundColor:
-                                                this.state.remClickMedicamento === index && this.state.removerMedicamento
-                                                    ? "#ffa6a6" : "rgba(255,255,255,0.3)"
+                                                this.state.remClickAlimento === index && this.state.removerAlimento
+                                                    ? "#ffa6a6" : "rgba(255,255,255,1)"
                                         }
                                         ]}
-                                            onPress={() => { this._removerMedicamento(index) }} >
+                                            onPress={() => { this._removerAlimento(index) }} >
                                             <View style={{ width: width * 0.45, textAlign: "center", justifyContent: "center" }}>
                                                 <Text style={font.btnTextoPequeno}>{rowData.nome}</Text>
                                             </View>
@@ -256,18 +272,18 @@ export default class NovoRegistro extends React.Component {
                             <Text style={{ fontFamily: "Jam", fontSize: 25, alignSelf: "center", textDecorationLine: "underline", paddingBottom: 20, paddingTop: 20 }}>{this.state.refBase}</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <Text style={{ fontFamily: 'Amita-Bold', fontSize: 26, textAlign: 'center', color: "#0e6820" }}>Alimento/bebidas</Text>
-                                {this.state.removerMedicamento ?
+                                {this.state.removerAlimento ?
                                     <Icon style={{ alignSelf: "center", paddingLeft: 20 }}
                                         name="info-circle" size={35} color="#55f"
                                         onPress={() => this.setState({ modalInfo: !this.state.modalInfo })} />
                                     :
                                     <Icon style={{ alignSelf: "center", paddingLeft: 20 }}
                                         name="plus-circle" size={35} color="#0e6820"
-                                        onPress={() => this.setState({ modalVisible: !this.state.modalVisible })} />
+                                        onPress={() => this.setState({ modalSelectAlimento: !this.state.modalSelectAlimento })} />
                                 }
                                 <Icon style={{ alignSelf: "center", paddingLeft: 10 }}
                                     name="trash" size={35} color="#900"
-                                    onPress={() => { this.setState({ removerMedicamento: !this.state.removerMedicamento }); }} />
+                                    onPress={() => { this.setState({ removerAlimento: !this.state.removerAlimento }); }} />
                             </View>
                             <View style={styles.row}>
                                 <View style={{ width: width * 0.45, textAlign: "center", justifyContent: "center" }}>
@@ -285,7 +301,14 @@ export default class NovoRegistro extends React.Component {
                                 data={this.state.alimentosSelecionados}
                                 renderItem={({ item: rowData }) => {
                                     return (
-                                        <View style={styles.row}>
+                                        <TouchableOpacity style={[styles.row,
+                                        {
+                                            backgroundColor:
+                                                this.state.remClickMedicamento === index && this.state.removerMedicamento
+                                                    ? "#ffa6a6" : "rgba(255,255,255,1)"
+                                        }
+                                        ]}
+                                            onPress={() => { this._removerMedicamento(index) }} >
                                             <View style={{ width: width * 0.45, textAlign: "center", justifyContent: "center" }}>
                                                 <Text style={font.btnTextoPequeno}>{rowData.nome}</Text>
                                             </View>
@@ -295,7 +318,7 @@ export default class NovoRegistro extends React.Component {
                                             <View style={{ width: width * 0.38, textAlign: "center", justifyContent: "center" }}>
                                                 <Text style={font.btnTextoPequeno}>{rowData.medida}</Text>
                                             </View>
-                                        </View>
+                                        </TouchableOpacity>
                                     );
                                 }}
                                 keyExtractor={(item, index) => index.toString()}
@@ -319,31 +342,28 @@ export default class NovoRegistro extends React.Component {
                     </ScrollView>
 
                     {/* Modal Medicamentos VVVVVVV */}
-                    {/* Modal Medicamentos ^^^^^^ */}
-                    {/* Modal Alimento VVVVVVV */}
-                    {/* Modal Alimento ^^^^^^ */}
                     <Modal
                         animationType="slide"
                         transparent={true}
-                        visible={this.state.modalVisible}
+                        visible={this.state.modalSelectMedicamento}
                     >
                         <TouchableOpacity style={{ height: height, width: width, justifyContent: "center", alignItems: "center" }}
                             onPress={() => {
-                                this.setState({ modalVisible: !this.state.modalVisible })
+                                this.setState({ modalSelectMedicamento: !this.state.modalSelectMedicamento })
                             }}
                         >
                             <View style={styles.modalSelect}>
                                 <Icon style={{ zIndex: 1, alignSelf: "flex-end", marginTop: 10, marginRight: 10 }}
                                     name="close" size={30} color="#900"
                                     onPress={() => {
-                                        this.setState({ modalVisible: !this.state.modalVisible })
+                                        this.setState({ modalSelectMedicamento: !this.state.modalSelectMedicamento })
                                     }} />
                                 <Text style={{ fontFamily: "Jam", fontSize: 20, textAlign: "center", padding: 10 }}>
                                     Selecione o Medicamento para adicionar
                                 </Text>
                                 <FlatList
-                                    data={this.state.data.remedios}
-                                    extraData={this.state.data.remedios}
+                                    data={this.state.data.reqRemedios}
+                                    extraData={this.state.data.reqRemedios}
                                     renderItem={({ item: rowData, index: id }) => {
                                         return (
                                             <TouchableOpacity onPress={() => { console.log("oie"); this._addMedicamento(rowData); }}
@@ -365,6 +385,66 @@ export default class NovoRegistro extends React.Component {
                             </View>
                         </TouchableOpacity>
                     </Modal>
+
+                    {/* Modal Medicamentos ^^^^^^ */}
+
+                    {/* Modal Alimento VVVVVVV */}
+
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.state.modalSelectAlimento}
+                    >
+                        <View style={{ height: height, width: width, justifyContent: "center", alignItems: "center" }}                                                    >
+                            <View style={[styles.modalSelect, { height: height * 0.9 }]}>
+                                <Icon style={{ zIndex: 1, alignSelf: "flex-end", marginTop: 10, marginRight: 10 }}
+                                    name="close" size={30} color="#900"
+                                    onPress={() => {
+                                        this.setState({ modalSelectAlimento: !this.state.modalSelectAlimento })
+                                    }} />
+                                <Text style={{ fontFamily: "Jam", fontSize: 20, textAlign: "center", padding: 10 }}>
+                                    Busque o Alimento para adiciona-lo
+                                    </Text>
+                                <View style={styles.ModalBuscaContainer}>
+                                    <TextInput
+                                        style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 20, flex: 2 }}
+                                        onChangeText={inputAlimentoBusca => this.setState({ inputAlimentoBusca })}
+                                        value={this.state.inputAlimentoBusca}
+                                    />
+                                    <TouchableOpacity style={{ flex: 1, marginLeft: 20, borderWidth: 2, borderBottomColor: "black", borderRadius: 20, display: "flex", alignContent: 'center', justifyContent: "center", textAlign: "center" }}
+                                        onPress={() => { console.log(this.state.inputAlimentoBusca); }}>
+                                        <Text style={font.textoPickerRow}>Buscar</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <FlatList
+                                    extraData={this.state}
+                                    data={this.state.filterAlimentos.length === 0 ? this.state.data.reqAlimentos :this.state.filterAlimentos }
+                                    renderItem={({ item: rowData, index: id }) => {
+                                        return (
+                                            <TouchableOpacity onPress={() => { console.log("oie"); this._addMedicamento(rowData); }}
+                                                style={{ marginTop: 20, flex: 1, flexDirection: "row", width: width, justifyContent: "space-around", backgroundColor: id % 2 === 0 ? "#ccc" : "#fff" }}>
+                                                <>
+                                                    <View style={{ width: width * 0.4, textAlign: "center", justifyContent: "center" }}>
+                                                        <Text style={font.textoPickerRow}>{rowData.nome}</Text>
+                                                    </View>
+                                                    <View style={{ width: width * 0.4, textAlign: "center", justifyContent: "center" }}>
+                                                        <Text style={font.textoPickerRow}><Text style={{ color: "gray" }}>Medida:</Text> {rowData.medidaUsual}</Text>
+                                                    </View>
+                                                    <View style={{ width: width * 0.2, textAlign: "center", justifyContent: "center" }}>
+                                                        <Text style={font.textoPickerRow}><Text style={{ color: "gray" }}>g/ml:</Text> {rowData.porcao}</Text>
+                                                        <Text style={font.textoPickerRow}><Text style={{ color: "gray" }}>Carbs:</Text> {rowData.carbs}</Text>
+                                                    </View>
+                                                </>
+                                            </TouchableOpacity>
+                                        );
+                                    }}
+                                    keyExtractor={(item, index) => index.toString()}
+                                />
+                            </View>
+                        </View>
+                    </Modal>
+
+                    {/* Modal Alimento ^^^^^^ */}
 
                     <Modal
                         animationType="slide"
@@ -458,5 +538,15 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         paddingBottom: 30,
-    }
+    },
+    ModalBuscaContainer: {
+        flexDirection: "row",
+        display: "flex",
+        alignContent: 'center',
+        justifyContent: "center",
+        textAlign: "center",
+        paddingLeft: 40,
+        paddingRight: 40,
+    },
+
 });
