@@ -29,48 +29,6 @@ const reqDadosPerfil = {
         { nome: "medicamento 4", vezes: 3, mg: 30 },
     ],
     reqAlimentos: Alimentos,
-    // [
-    //     { nome: "Um alimento com um nome grande demais ", quantidade: 1, medida: "copo americano" },
-    //     { nome: "alimento 1", quantidade: 2, medida: "copo americano" },
-    //     { nome: "alimento numero 2", quantidade: 1, medida: "escumadeira" },
-    //     { nome: "alimento 3", quantidade: 1, medida: "escumadeira" },
-    //     { nome: "alimento quatro com algo a mais", quantidade: 10, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-    //     { nome: "alimento 1", quantidade: 30, medida: "unidade" },
-
-    // ],
     hiperglicemia: 140,
     maxIdeal: 120,
     minIdeal: 80,
@@ -98,12 +56,12 @@ export default class NovoRegistro extends React.Component {
             remClickAlimento: -1,
 
             modalSelectAlimento: false,
-            filterAlimentos:[],
+            filterAlimentos: [],
             modalSelectMedicamento: false,
             modalInfo: false,
         }
     }
-    filterByValue = (string)  =>{
+    filterByValue = (string) => {
         return this.state.data.reqAlimentos.filter(
             o => o.nome.toLowerCase().includes(string.toLowerCase()));
     }
@@ -134,7 +92,7 @@ export default class NovoRegistro extends React.Component {
 
     _addAlimento = (rowData) => {
         let alimentosSelecionados = this.state.alimentosSelecionados;
-        alimentosSelecionados.push({ nome: rowData.nome, quantidade: rowData.quantidade, medida: rowData.medida });
+        alimentosSelecionados.push({ nome: rowData.nome, porcao: rowData.porcao, medidaUsual: rowData.medidaUsual });
         this.setState({ alimentosSelecionados })
     }
 
@@ -157,7 +115,6 @@ export default class NovoRegistro extends React.Component {
     _removerMedicamento = (index) => {
         if (this.state.remClickMedicamento === index && this.state.removerMedicamento === true) {
             let remediosSelecionados = this.state.remediosSelecionados;
-            console.log("antes", remediosSelecionados);
             remediosSelecionados.splice(index, 1);
             this.setState({ remediosSelecionados, remClickMedicamento: -1 })
         } else {
@@ -233,11 +190,11 @@ export default class NovoRegistro extends React.Component {
                                         <TouchableOpacity style={[styles.row,
                                         {
                                             backgroundColor:
-                                                this.state.remClickAlimento === index && this.state.removerAlimento
+                                                (this.state.remClickMedicamento === index && this.state.removerMedicamento ===true)
                                                     ? "#ffa6a6" : "rgba(255,255,255,1)"
                                         }
                                         ]}
-                                            onPress={() => { this._removerAlimento(index) }} >
+                                            onPress={() => { this._removerMedicamento(index) }} >
                                             <View style={{ width: width * 0.45, textAlign: "center", justifyContent: "center" }}>
                                                 <Text style={font.btnTextoPequeno}>{rowData.nome}</Text>
                                             </View>
@@ -299,24 +256,24 @@ export default class NovoRegistro extends React.Component {
                             <FlatList
                                 extraData={this.state}
                                 data={this.state.alimentosSelecionados}
-                                renderItem={({ item: rowData }) => {
+                                renderItem={({ item: rowData  , index:index}) => {
                                     return (
                                         <TouchableOpacity style={[styles.row,
                                         {
                                             backgroundColor:
-                                                this.state.remClickMedicamento === index && this.state.removerMedicamento
+                                                this.state.remClickAlimento === index && this.state.removerAlimento
                                                     ? "#ffa6a6" : "rgba(255,255,255,1)"
                                         }
                                         ]}
-                                            onPress={() => { this._removerMedicamento(index) }} >
+                                            onPress={() => { this._removerAlimento(index) }} >
                                             <View style={{ width: width * 0.45, textAlign: "center", justifyContent: "center" }}>
                                                 <Text style={font.btnTextoPequeno}>{rowData.nome}</Text>
                                             </View>
-                                            <View style={{ width: width * 0.10, textAlign: "center", justifyContent: "center" }}>
-                                                <Text style={font.btnTextoPequeno}>{rowData.quantidade}</Text>
+                                            <View style={{ width: width * 0.30, textAlign: "center", justifyContent: "center" }}>
+                                                <Text style={font.btnTextoPequeno}>{rowData.medidaUsual}</Text>
                                             </View>
-                                            <View style={{ width: width * 0.38, textAlign: "center", justifyContent: "center" }}>
-                                                <Text style={font.btnTextoPequeno}>{rowData.medida}</Text>
+                                            <View style={{ width: width * 0.18, textAlign: "center", justifyContent: "center" }}>
+                                                <Text style={font.btnTextoPequeno}>{rowData.porcao}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     );
@@ -366,7 +323,7 @@ export default class NovoRegistro extends React.Component {
                                     extraData={this.state.data.reqRemedios}
                                     renderItem={({ item: rowData, index: id }) => {
                                         return (
-                                            <TouchableOpacity onPress={() => { console.log("oie"); this._addMedicamento(rowData); }}
+                                            <TouchableOpacity onPress={() => { this._addMedicamento(rowData); }}
                                                 style={{ marginTop: 20, flex: 1, flexDirection: "row", width: width, justifyContent: "space-around", backgroundColor: id % 2 === 0 ? "#ccc" : "#fff" }}>
                                                 <>
                                                     <View style={{ width: width * 0.6, textAlign: "center", justifyContent: "center" }}>
@@ -418,10 +375,10 @@ export default class NovoRegistro extends React.Component {
                                 </View>
                                 <FlatList
                                     extraData={this.state}
-                                    data={this.state.filterAlimentos.length === 0 ? this.state.data.reqAlimentos :this.state.filterAlimentos }
+                                    data={this.state.filterAlimentos.length === 0 ? this.state.data.reqAlimentos : this.state.filterAlimentos}
                                     renderItem={({ item: rowData, index: id }) => {
                                         return (
-                                            <TouchableOpacity onPress={() => { console.log("oie"); this._addMedicamento(rowData); }}
+                                            <TouchableOpacity onPress={() => {this._addAlimento(rowData); }}
                                                 style={{ marginTop: 20, flex: 1, flexDirection: "row", width: width, justifyContent: "space-around", backgroundColor: id % 2 === 0 ? "#ccc" : "#fff" }}>
                                                 <>
                                                     <View style={{ width: width * 0.4, textAlign: "center", justifyContent: "center" }}>
