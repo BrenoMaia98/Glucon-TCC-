@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 11920,
-  "expoServerNgrokUrl": "https://ew-jc4.anonymous.glucon-tcc.exp.direct",
-  "packagerNgrokUrl": "https://packager.ew-jc4.anonymous.glucon-tcc.exp.direct",
-  "ngrokPid": 11104
+  "packagerPid": 23900,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
