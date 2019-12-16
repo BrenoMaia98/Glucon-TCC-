@@ -30,7 +30,7 @@ const AppNavigator = createStackNavigator(
         NovoRegistro: NovoRegistro,
     },
     {
-        initialRouteName: 'NovoRegistro',
+        initialRouteName: 'Perfil',
         defaultNavigationOptions: {
             header: null,
         },

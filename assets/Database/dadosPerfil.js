@@ -9,6 +9,8 @@ export const reqDadosPerfil = {
         { nome: "medicamento 4", vezes: 3, mg: 30 },
     ],
     reqAlimentos: Alimentos,
+    tipoDiabetes: "Tipo 01",
+    tipoDiabetes: "emailteste@gmail.com",
     hiperglicemia: 140,
     maxIdeal: 120,
     minIdeal: 80,

@@ -10,6 +10,7 @@ import InputSpinner from "react-native-input-spinner";
 import { reqDadosPerfil } from "../../../assets/Database/dadosPerfil";
 import { RefeicoesBase } from "../../../assets/Database/refeicao";
 
+import { StackActions, NavigationActions } from 'react-navigation';
 
 
 
@@ -117,9 +118,23 @@ export default class NovoRegistro extends React.Component {
 
     _buscarRefeicaoBasePorNome = (string) => {
         let filterRefeicaoBases = this.state.RefeicoesBase.filter(
-            o => o.apelido.toLowerCase().includes(string.toLowerCase()));
+            databaseItem => databaseItem.apelido.toLowerCase().includes(string.toLowerCase()));
 
         this.setState({ filterRefeicaoBases });
+    }
+
+    _concatAlimentosRefeicao = (array) => {
+        let alimentosSelecionados = this.state.alimentosSelecionados;
+        array.map(
+            alimentoMap => {
+                let alimento = this.state.data.reqAlimentos.filter(
+                    databaseItem => databaseItem.nome.toLowerCase() === alimentoMap.toLowerCase()
+                );
+                console.log(alimento[0]);
+                alimentosSelecionados.push(alimento[0]);
+            });
+        this.setState({alimentosSelecionados , modalInfoRefeicaoBase : false , modalSelectRefeicaoBase: false })
+
     }
 
     render() {
@@ -499,7 +514,14 @@ export default class NovoRegistro extends React.Component {
                                     }}
                                     keyExtractor={(item, index) => index.toString()}
                                 />
-                                <BotaoPadrao onPress={() => this.setState({ modalSalvarRegistro: !this.state.modalSalvarRegistro })}
+                                <BotaoPadrao onPress={() => {
+                                    this.setState({ modalSalvarRegistro: !this.state.modalSalvarRegistro });
+                                    const resetAction = StackActions.reset({
+                                        index: 0,
+                                        actions: [NavigationActions.navigate({ routeName: 'MenuOpcoes' })],
+                                    });
+                                    this.props.navigation.dispatch(resetAction);
+                                }}
                                     font={[font.btnTextoGrande, { fontFamily: "Jam", padding: 10 }]}
                                     title="Concluir Registro" wid={80}></BotaoPadrao>
                             </View>
@@ -596,26 +618,26 @@ export default class NovoRegistro extends React.Component {
                                 <Text style={{ fontFamily: "Jam", fontSize: 20, textAlign: "center", padding: 10 }}>
                                     Caso confirmada a refeição base, seus respectivos alimentos serão adicionados a sua lista de alimentos deste registro.
                                 </Text>
-                                <View style={{ marginTop: 20 , marginBottom:20, flex: 1, width: width-4, backgroundColor: "#ccc",flexDirection: "row" , padding:10  }}>
-                                        <View style={{ textAlign: "center", flex: 1, justifyContent: "center", paddingLeft: 10 }}>
-                                            <Text style={[font.textoPickerRow, { color: "gray", textAlign: "left" }]}>Apelido:   </Text>
-                                            <Text style={font.textoPickerRow}>{this.state.RefeicoesBaseSelecionada.apelido}</Text>
-                                        </View>
-                                        <View style={{flex:2, textAlign: "center", justifyContent: "center", paddingRight: 10 }}>
-                                            <Text style={[font.textoPickerRow, { color: "gray", textAlign: "left" }]}>Lista de alimentos registrados:   </Text>
-                                            <FlatList
-                                                extraData={this.state}
-                                                data={this.state.RefeicoesBaseSelecionada.alimentos}
-                                                renderItem={({ item: rowData }) => {
-                                                    return (
-                                                        <Text style={[font.textoPickerRow, { textAlign: "left" }]}> -  {rowData}</Text>
-                                                    );
-                                                }}
-                                                keyExtractor={(item, index) => index.toString()}
-                                            />
+                                <View style={{ marginTop: 20, marginBottom: 20, flex: 1, width: width - 4, backgroundColor: "#ccc", flexDirection: "row", padding: 10 }}>
+                                    <View style={{ textAlign: "center", flex: 1, justifyContent: "center", paddingLeft: 10 }}>
+                                        <Text style={[font.textoPickerRow, { color: "gray", textAlign: "left" }]}>Apelido:   </Text>
+                                        <Text style={font.textoPickerRow}>{this.state.RefeicoesBaseSelecionada.apelido}</Text>
+                                    </View>
+                                    <View style={{ flex: 2, textAlign: "center", justifyContent: "center", paddingRight: 10 }}>
+                                        <Text style={[font.textoPickerRow, { color: "gray", textAlign: "left" }]}>Lista de alimentos registrados:   </Text>
+                                        <FlatList
+                                            extraData={this.state}
+                                            data={this.state.RefeicoesBaseSelecionada.alimentos}
+                                            renderItem={({ item: rowData }) => {
+                                                return (
+                                                    <Text style={[font.textoPickerRow, { textAlign: "left" }]}> -  {rowData}</Text>
+                                                );
+                                            }}
+                                            keyExtractor={(item, index) => index.toString()}
+                                        />
                                     </View>
                                 </View>
-                                <BotaoPadrao onPress={() => this.props.navigation.navigate("MenuOpcoes")}
+                                <BotaoPadrao onPress={() => this._concatAlimentosRefeicao(this.state.RefeicoesBaseSelecionada.alimentos)}
                                     font={[font.btnTextoGrande, { fontFamily: "Jam", padding: 10 }]}
                                     title="Confirmar" wid={40}></BotaoPadrao>
                             </View>
