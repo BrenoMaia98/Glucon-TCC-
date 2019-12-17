@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 23900,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "packagerPid": 5692,
+  "expoServerNgrokUrl": "https://ff-kz3.anonymous.glucon-tcc.exp.direct",
+  "packagerNgrokUrl": "https://packager.ff-kz3.anonymous.glucon-tcc.exp.direct",
+  "ngrokPid": 18764
 }

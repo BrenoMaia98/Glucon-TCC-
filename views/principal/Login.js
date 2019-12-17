@@ -45,6 +45,7 @@ export default class Login extends React.Component {
                                 Senha :
                             </Text>
                             <Input
+                            type="password"
                                 onChangeText={senha => this.setState({ senha })}
                             />
                         </Item>

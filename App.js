@@ -9,6 +9,7 @@ import Login from './views/principal/Login';
 import Home from './views/principal/Home';
 import MenuOpcoes from './views/operacoes/MenuOpcoes';
 import NovoRegistro from './views/operacoes/novoRegistro/novoRegistro';
+import Refeicao from './views/operacoes/refeicao/refeicao';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
@@ -28,9 +29,10 @@ const AppNavigator = createStackNavigator(
         Login: Login,
         MenuOpcoes: MenuOpcoes,
         NovoRegistro: NovoRegistro,
+        Refeicao: Refeicao,
     },
     {
-        initialRouteName: 'Perfil',
+        initialRouteName: 'Refeicao',
         defaultNavigationOptions: {
             header: null,
         },
