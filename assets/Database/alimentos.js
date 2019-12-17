@@ -127,7 +127,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Açai natural Frooty ",
+    nome:           "Açai natural Frooty",
     medidaUsual:    "colheres de sopa rasa",
     porcao:         "60",
     carbs:          "13",
@@ -176,14 +176,14 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Achocolatado Diet Gold ",
+    nome:           "Achocolatado Diet Gold",
     medidaUsual:    "colher de sopa",
     porcao:         "9",
     carbs:          "6",
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Achocolatado Diet Linea ",
+    nome:           "Achocolatado Diet Linea",
     medidaUsual:    "colher de sopa",
     porcao:         "12",
     carbs:          "5",
@@ -330,7 +330,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Ameixa em calda ",
+    nome:           "Ameixa em calda",
     medidaUsual:    "01 unidade média",
     porcao:         "7",
     carbs:          "5",
@@ -344,7 +344,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Amêndoa ",
+    nome:           "Amêndoa",
     medidaUsual:    "01 unidade média",
     porcao:         "3",
     carbs:          "1",
@@ -471,7 +471,7 @@ export const Alimentos = [
 {
     categoria:      "Dia-a-Dia",
     nome:           "Arroz com amendoas",
-    medidaUsual:    "colher de servir ",
+    medidaUsual:    "colher de servir",
     porcao:         "60",
     carbs:          "18",
 },
@@ -925,7 +925,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Batata smiles Mccain ",
+    nome:           "Batata smiles Mccain",
     medidaUsual:    "01 unidade",
     porcao:         "21",
     carbs:          "7",
@@ -1051,7 +1051,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Bem casado ",
+    nome:           "Bem casado",
     medidaUsual:    "unidade",
     porcao:         "40",
     carbs:          "25",
@@ -1583,7 +1583,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Bolo de casamento ",
+    nome:           "Bolo de casamento",
     medidaUsual:    "01 fatia pequena",
     porcao:         "75",
     carbs:          "42",
@@ -1681,8 +1681,8 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Bolo Merengue ",
-    medidaUsual:    "fatia peqquena ",
+    nome:           "Bolo Merengue",
+    medidaUsual:    "fatia peqquena",
     porcao:         "50",
     carbs:          "11",
 },
@@ -1814,7 +1814,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Brigadeiro ",
+    nome:           "Brigadeiro",
     medidaUsual:    "unidade médio",
     porcao:         "30",
     carbs:          "16",
@@ -2010,7 +2010,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Canapé de capaccio ",
+    nome:           "Canapé de capaccio",
     medidaUsual:    "01 torrada",
     porcao:         "3",
     carbs:          "2",
@@ -2269,7 +2269,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Castanha de caju ",
+    nome:           "Castanha de caju",
     medidaUsual:    "unidade média",
     porcao:         "3",
     carbs:          "1",
@@ -2283,14 +2283,14 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Castanha do pará ",
+    nome:           "Castanha do pará",
     medidaUsual:    "unidade média",
     porcao:         "6",
     carbs:          "1",
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Castanha portuguesa ",
+    nome:           "Castanha portuguesa",
     medidaUsual:    "unidade",
     porcao:         "10",
     carbs:          "5",
@@ -2591,7 +2591,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Dia-a-Dia",
-    nome:           "Cheesecake com Mirtilo (sorvete) ",
+    nome:           "Cheesecake com Mirtilo (sorvete)",
     medidaUsual:    "01 bola",
     porcao:         "60",
     carbs:          "18",
@@ -9430,7 +9430,7 @@ export const Alimentos = [
 {
     categoria:      "Festa Junina",
     nome:           "Curau de milho",
-    medidaUsual:    "2/3 xícara de chá ",
+    medidaUsual:    "2/3 xícara de chá",
     porcao:         "140",
     carbs:          "33",
 },
@@ -9527,8 +9527,8 @@ export const Alimentos = [
 },
 {
     categoria:      "Festa Junina",
-    nome:           "Pipoca doce ",
-    medidaUsual:    "saco medio ",
+    nome:           "Pipoca doce",
+    medidaUsual:    "saco medio",
     porcao:         "20",
     carbs:          "20",
 },
@@ -9548,7 +9548,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Festa Junina",
-    nome:           "Vinho quente ",
+    nome:           "Vinho quente",
     medidaUsual:    "01 copo",
     porcao:         "150",
     carbs:          "24",
@@ -9620,7 +9620,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Natal",
-    nome:           "Pessego em calda ",
+    nome:           "Pessego em calda",
     medidaUsual:    "01 metade",
     porcao:         "30",
     carbs:          "6",
@@ -9700,7 +9700,7 @@ export const Alimentos = [
 {
     categoria:      "Doces",
     nome:           "Algodão doce uva Snow Sugar",
-    medidaUsual:    "1/2 chícara de chá ",
+    medidaUsual:    "1/2 chícara de chá",
     porcao:         "5",
     carbs:          "5",
 },
@@ -9734,7 +9734,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Doces",
-    nome:           "Bala de banana ",
+    nome:           "Bala de banana",
     medidaUsual:    "3 unidades",
     porcao:         "50",
     carbs:          "12",
@@ -9805,7 +9805,7 @@ export const Alimentos = [
 {
     categoria:      "Doces",
     nome:           "Chocolate quente com leite (Mc’ Donalds)",
-    medidaUsual:    "copo grande ",
+    medidaUsual:    "copo grande",
     porcao:         "250",
     carbs:          "24",
 },
@@ -10072,14 +10072,14 @@ export const Alimentos = [
 },
 {
     categoria:      "Comida Japonesa",
-    nome:           "Sashimi de atum ",
+    nome:           "Sashimi de atum",
     medidaUsual:    "fatia",
     porcao:         "10",
     carbs:          "0",
 },
 {
     categoria:      "Comida Japonesa",
-    nome:           "Sashimi de salmão ",
+    nome:           "Sashimi de salmão",
     medidaUsual:    "fatia",
     porcao:         "10",
     carbs:          "0",
@@ -10215,7 +10215,7 @@ export const Alimentos = [
 {
     categoria:      "Churrascaria",
     nome:           "Batata inglesa frita",
-    medidaUsual:    "escumadeira media cheia ",
+    medidaUsual:    "escumadeira media cheia",
     porcao:         "65",
     carbs:          "23",
 },
@@ -10243,7 +10243,7 @@ export const Alimentos = [
 {
     categoria:      "Churrascaria",
     nome:           "Arroz à grega",
-    medidaUsual:    "colher de servir ",
+    medidaUsual:    "colher de servir",
     porcao:         "60",
     carbs:          "18",
 },
@@ -10349,21 +10349,21 @@ export const Alimentos = [
 },
 {
     categoria:      "Comida Italiana",
-    nome:           "Pão italiano ",
-    medidaUsual:    "01 fatia ",
+    nome:           "Pão italiano",
+    medidaUsual:    "01 fatia",
     porcao:         "50",
     carbs:          "28",
 },
 {
     categoria:      "Comida Italiana",
-    nome:           "Fettuccine ",
+    nome:           "Fettuccine",
     medidaUsual:    "01 pegador",
     porcao:         "110",
     carbs:          "24",
 },
 {
     categoria:      "Comida Italiana",
-    nome:           "Focaccia ",
+    nome:           "Focaccia",
     medidaUsual:    "fatia",
     porcao:         "50",
     carbs:          "22",
@@ -10391,7 +10391,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Comida Italiana",
-    nome:           "Spaghetti ao sugo ",
+    nome:           "Spaghetti ao sugo",
     medidaUsual:    "01 pegador",
     porcao:         "110",
     carbs:          "22",
@@ -10568,7 +10568,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Comida Árabe",
-    nome:           "Coalhada seca natural Alibey ",
+    nome:           "Coalhada seca natural Alibey",
     medidaUsual:    "colher de sopa",
     porcao:         "15",
     carbs:          "1",
@@ -10661,7 +10661,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Culinaria Alemã",
-    nome:           "Cerveja ",
+    nome:           "Cerveja",
     medidaUsual:    "lata",
     porcao:         "350",
     carbs:          "12",
@@ -10943,8 +10943,8 @@ export const Alimentos = [
 },
 {
     categoria:      "Festa de Aniversário",
-    nome:           "Bolo Merengue ",
-    medidaUsual:    "fatia peqquena ",
+    nome:           "Bolo Merengue",
+    medidaUsual:    "fatia peqquena",
     porcao:         "50",
     carbs:          "11",
 },
@@ -11323,7 +11323,7 @@ export const Alimentos = [
 },
 {
     categoria:      "Cantina Escolar",
-    nome:           "Salada de frutas ",
+    nome:           "Salada de frutas",
     medidaUsual:    "01 potinho pequeno",
     porcao:         "120",
     carbs:          "18",

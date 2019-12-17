@@ -1,39 +1,17 @@
+import { Input } from "native-base";
 import React from "react";
-import {
-    View,
-    Text,
-    FlatList,
-    ImageBackground,
-    ScrollView,
-    Dimensions,
-    StyleSheet,
-    Modal,
-} from "react-native";
-import {
-    Form,
-    Item,
-    Input,
-} from "native-base";
+import { Dimensions, FlatList, ImageBackground, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { font } from '../../../assets/estilos/styles';
 import BotaoPadrao from '../../../components/BotaoPadrao';
 import LuzesNivel from '../../../components/LuzesNivel';
-import { font } from '../../../assets/estilos/styles';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { TouchableOpacity, TextInput } from "react-native";
-import { Alimentos } from "../../../assets/Database/alimentos";
 
-const reqDadosPerfil = {
-    reqRemedios: [
-        { nome: "medicamento 1", vezes: 1, mg: 45 },
-        { nome: "medicamento 2", vezes: 2, mg: 20 },
-        { nome: "medicamento 3", vezes: 1, mg: 75 },
-        { nome: "medicamento 4", vezes: 3, mg: 30 },
-    ],
-    reqAlimentos: Alimentos,
-    hiperglicemia: 140,
-    maxIdeal: 120,
-    minIdeal: 80,
-    hipoglicemia: 60,
-}
+import InputSpinner from "react-native-input-spinner";
+import { reqDadosPerfil } from "../../../assets/Database/dadosPerfil";
+import { RefeicoesBase } from "../../../assets/Database/refeicao";
+
+import { StackActions, NavigationActions } from 'react-navigation';
+
 
 
 
@@ -45,26 +23,30 @@ export default class NovoRegistro extends React.Component {
             nivelSelecionado: null,
             data: reqDadosPerfil,
 
-            refBase: "Nenhuma selecionada",
-
-            alimentosSelecionados: [],
             remediosSelecionados: [],
-
+            modalSelectMedicamento: false,
             removerMedicamento: false,
             remClickMedicamento: -1,
+
+            alimentosSelecionados: [],
+            filterAlimentos: [],
+            QTDfilterAlimentos: [],
+            modalSelectAlimento: false,
             removerAlimento: false,
             remClickAlimento: -1,
 
-            modalSelectAlimento: false,
-            filterAlimentos: [],
-            modalSelectMedicamento: false,
+            RefeicoesBase: RefeicoesBase,
+            RefeicoesBaseSelecionada: { apelido: "Nenhuma selecionada", alimentos: [] },
+            modalSelectRefeicaoBase: false,
+            filterRefeicaoBases: [],
+
+            modalInfoRefeicaoBase: false,
+
             modalInfo: false,
+            modalSalvarRegistro: false,
         }
     }
-    filterByValue = (string) => {
-        return this.state.data.reqAlimentos.filter(
-            o => o.nome.toLowerCase().includes(string.toLowerCase()));
-    }
+
 
     _verificaNovoNivel = (nivel) => {
         console.log("60 , 80 , 120 , 140 : entrou '" + nivel + "'");
@@ -92,15 +74,19 @@ export default class NovoRegistro extends React.Component {
 
     _addAlimento = (rowData) => {
         let alimentosSelecionados = this.state.alimentosSelecionados;
+        let QTDfilterAlimentos = this.state.QTDfilterAlimentos;
+        QTDfilterAlimentos.push(1);
         alimentosSelecionados.push({ nome: rowData.nome, porcao: rowData.porcao, medidaUsual: rowData.medidaUsual });
-        this.setState({ alimentosSelecionados })
+        this.setState({ alimentosSelecionados, QTDfilterAlimentos })
     }
 
     _removerAlimento = (index) => {
         if (this.state.remClickAlimento === index && this.state.removerAlimento === true) {
             let alimentosSelecionados = this.state.alimentosSelecionados;
+            let QTDfilterAlimentos = this.state.QTDfilterAlimentos;
+            QTDfilterAlimentos.splice(index, 1);
             alimentosSelecionados.splice(index, 1);
-            this.setState({ alimentosSelecionados, remClickAlimento: -1 })
+            this.setState({ alimentosSelecionados, QTDfilterAlimentos, remClickAlimento: -1 })
         } else {
             this.setState({ remClickAlimento: index })
         }
@@ -122,6 +108,34 @@ export default class NovoRegistro extends React.Component {
         }
     }
 
+
+    _buscarAlimentoPorNome = (string) => {
+        let filterAlimentos = this.state.data.reqAlimentos.filter(
+            o => o.nome.toLowerCase().includes(string.toLowerCase()));
+
+        this.setState({ filterAlimentos });
+    }
+
+    _buscarRefeicaoBasePorNome = (string) => {
+        let filterRefeicaoBases = this.state.RefeicoesBase.filter(
+            databaseItem => databaseItem.apelido.toLowerCase().includes(string.toLowerCase()));
+
+        this.setState({ filterRefeicaoBases });
+    }
+
+    _concatAlimentosRefeicao = (array) => {
+        let alimentosSelecionados = this.state.alimentosSelecionados;
+        array.map(
+            alimentoMap => {
+                let alimento = this.state.data.reqAlimentos.filter(
+                    databaseItem => databaseItem.nome.toLowerCase() === alimentoMap.toLowerCase()
+                );
+                console.log(alimento[0]);
+                alimentosSelecionados.push(alimento[0]);
+            });
+        this.setState({alimentosSelecionados , modalInfoRefeicaoBase : false , modalSelectRefeicaoBase: false })
+
+    }
 
     render() {
         return (
@@ -190,7 +204,7 @@ export default class NovoRegistro extends React.Component {
                                         <TouchableOpacity style={[styles.row,
                                         {
                                             backgroundColor:
-                                                (this.state.remClickMedicamento === index && this.state.removerMedicamento ===true)
+                                                (this.state.remClickMedicamento === index && this.state.removerMedicamento === true)
                                                     ? "#ffa6a6" : "rgba(255,255,255,1)"
                                         }
                                         ]}
@@ -219,14 +233,19 @@ export default class NovoRegistro extends React.Component {
                                 <Text style={[font.titulo, { color: "#0e6820" }]}>Refeição base</Text>
                                 <Icon style={{ alignSelf: "center", paddingLeft: 20 }}
                                     name="edit" size={35} color="#0e6820"
-                                    onPress={() => console.log("Funfou :D")} />
+                                    onPress={() => {
+                                        console.log(this.state.RefeicoesBaseSelecionada)
+                                        this.setState({ modalSelectRefeicaoBase: !this.setState.modalSelectRefeicaoBase })
+                                    }} />
                             </View>
+                            <Text style={{ fontFamily: "Jam", fontSize: 25, alignSelf: "center", textDecorationLine: "underline", paddingBottom: 20, paddingTop: 20 }}>
+                                {this.state.RefeicoesBaseSelecionada ? this.state.RefeicoesBaseSelecionada.apelido : null}
+                            </Text>
 
                             {/* Refeição Base Select ^^^^^^^^^^ */}
 
                             {/* Alimentos/bebidas selecionados VVVVVVVV */}
 
-                            <Text style={{ fontFamily: "Jam", fontSize: 25, alignSelf: "center", textDecorationLine: "underline", paddingBottom: 20, paddingTop: 20 }}>{this.state.refBase}</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <Text style={{ fontFamily: 'Amita-Bold', fontSize: 26, textAlign: 'center', color: "#0e6820" }}>Alimento/bebidas</Text>
                                 {this.state.removerAlimento ?
@@ -256,7 +275,7 @@ export default class NovoRegistro extends React.Component {
                             <FlatList
                                 extraData={this.state}
                                 data={this.state.alimentosSelecionados}
-                                renderItem={({ item: rowData  , index:index}) => {
+                                renderItem={({ item: rowData, index: index }) => {
                                     return (
                                         <TouchableOpacity style={[styles.row,
                                         {
@@ -291,9 +310,9 @@ export default class NovoRegistro extends React.Component {
                             <BotaoPadrao onPress={() => this.props.navigation.navigate("MenuOpcoes")}
                                 font={[font.btnTextoGrande, { fontFamily: "Jam", padding: 10 }]}
                                 title="Voltar" wid={40}></BotaoPadrao>
-                            <BotaoPadrao onPress={() => console.log("Em construção")}
+                            <BotaoPadrao onPress={() => this.setState({ modalSalvarRegistro: !this.state.modalSalvarRegistro })}
                                 font={[font.btnTextoGrande, { fontFamily: "Jam", padding: 10 }]}
-                                title="Editar" wid={40}></BotaoPadrao>
+                                title="Salvar" wid={40}></BotaoPadrao>
                         </View>
                         {/* Buttons Voltar e Editar ^^^^^^ */}
                     </ScrollView>
@@ -364,12 +383,12 @@ export default class NovoRegistro extends React.Component {
                                     </Text>
                                 <View style={styles.ModalBuscaContainer}>
                                     <TextInput
-                                        style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 20, flex: 2 }}
+                                        style={{ borderColor: 'gray', borderWidth: 1, padding: 5, flex: 2 }}
                                         onChangeText={inputAlimentoBusca => this.setState({ inputAlimentoBusca })}
                                         value={this.state.inputAlimentoBusca}
                                     />
                                     <TouchableOpacity style={{ flex: 1, marginLeft: 20, borderWidth: 2, borderBottomColor: "black", borderRadius: 20, display: "flex", alignContent: 'center', justifyContent: "center", textAlign: "center" }}
-                                        onPress={() => { console.log(this.state.inputAlimentoBusca); }}>
+                                        onPress={() => { console.log(this.state.inputAlimentoBusca); this._buscarAlimentoPorNome(this.state.inputAlimentoBusca); }}>
                                         <Text style={font.textoPickerRow}>Buscar</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -378,7 +397,7 @@ export default class NovoRegistro extends React.Component {
                                     data={this.state.filterAlimentos.length === 0 ? this.state.data.reqAlimentos : this.state.filterAlimentos}
                                     renderItem={({ item: rowData, index: id }) => {
                                         return (
-                                            <TouchableOpacity onPress={() => {this._addAlimento(rowData); }}
+                                            <TouchableOpacity onPress={() => { this._addAlimento(rowData); }}
                                                 style={{ marginTop: 20, flex: 1, flexDirection: "row", width: width, justifyContent: "space-around", backgroundColor: id % 2 === 0 ? "#ccc" : "#fff" }}>
                                                 <>
                                                     <View style={{ width: width * 0.4, textAlign: "center", justifyContent: "center" }}>
@@ -402,6 +421,8 @@ export default class NovoRegistro extends React.Component {
                     </Modal>
 
                     {/* Modal Alimento ^^^^^^ */}
+
+                    {/* Modal Info para deletar VVVVVVV */}
 
                     <Modal
                         animationType="slide"
@@ -432,6 +453,200 @@ export default class NovoRegistro extends React.Component {
                             </View>
                         </TouchableOpacity>
                     </Modal>
+
+                    {/* Modal deletar ^^^^^^ */}
+
+                    {/* Modal QtdAlimentosSelecionados VVVVVVV */}
+
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.state.modalSalvarRegistro}
+                    >
+                        <View style={{ height: height, width: width, justifyContent: "center", alignItems: "center" }}                                                    >
+                            <View style={[styles.modalSelect, { height: height * 0.9 }]}>
+                                <Icon style={{ zIndex: 1, alignSelf: "flex-end", marginTop: 10, marginRight: 10 }}
+                                    name="close" size={30} color="#900"
+                                    onPress={() => {
+                                        this.setState({ modalSalvarRegistro: !this.state.modalSalvarRegistro })
+                                    }} />
+                                <Text style={{ fontFamily: "Jam", fontSize: 20, textAlign: "center", padding: 10 }}>
+                                    Selecione as quantidades estimadas de cada alimento do registro para salvar
+                                    </Text>
+                                <FlatList
+                                    extraData={this.state.QTDfilterAlimentos}
+                                    data={this.state.alimentosSelecionados}
+                                    renderItem={({ item: rowData, index: id }) => {
+                                        return (
+                                            <View
+                                                style={{ marginTop: 20, flex: 1, width: width, backgroundColor: id % 2 === 0 ? "#ccc" : "#fff" }}>
+                                                <View>
+                                                    <View style={{ flexDirection: "row" }}>
+                                                        <View>
+                                                            <View style={{ width: width * 0.5, textAlign: "center", flex: 1, justifyContent: "center", }}>
+                                                                <Text style={font.textoPickerRow}>{rowData.nome}</Text>
+                                                            </View>
+                                                            <View style={{ width: width * 0.5, textAlign: "center", justifyContent: "center", }}>
+                                                                <Text style={font.textoPickerRow}>{rowData.medidaUsual}<Text style={{ color: "gray" }}>  {rowData.porcao}g/ml</Text></Text>
+                                                            </View>
+                                                        </View>
+                                                        <View style={{ padding: 5, width: width * 0.5, textAlign: "center", flex: 1, flexDirection: "row", alignContent: "center", justifyContent: "center" }}>
+                                                            <InputSpinner
+                                                                min={0}
+                                                                step={1}
+                                                                rounded={false}
+                                                                showBorder
+                                                                colorRight={"#8888ff"}
+                                                                colorLeft={"#8888ff"}
+                                                                color={"#000"}
+                                                                value={this.state.QTDfilterAlimentos[id]}
+                                                                onChange={(num) => {
+                                                                    let QTDfilterAlimentos = this.state.QTDfilterAlimentos;
+                                                                    QTDfilterAlimentos[id] = num;
+                                                                    this.setState({ QTDfilterAlimentos })
+                                                                }}
+                                                            />
+                                                        </View>
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        );
+                                    }}
+                                    keyExtractor={(item, index) => index.toString()}
+                                />
+                                <BotaoPadrao onPress={() => {
+                                    this.setState({ modalSalvarRegistro: !this.state.modalSalvarRegistro });
+                                    const resetAction = StackActions.reset({
+                                        index: 0,
+                                        actions: [NavigationActions.navigate({ routeName: 'MenuOpcoes' })],
+                                    });
+                                    this.props.navigation.dispatch(resetAction);
+                                }}
+                                    font={[font.btnTextoGrande, { fontFamily: "Jam", padding: 10 }]}
+                                    title="Concluir Registro" wid={80}></BotaoPadrao>
+                            </View>
+                        </View>
+                    </Modal>
+
+                    {/* Modal QtdAlimentosSelecionados ^^^^^^ */}
+
+                    {/* Modal RefeicaoBase VVVVVVV */}
+
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.state.modalSelectRefeicaoBase}
+                    >
+                        <View style={{ height: height, width: width, justifyContent: "center", alignItems: "center" }}                                                    >
+                            <View style={[styles.modalSelect, { height: height * 0.9 }]}>
+                                <Icon style={{ zIndex: 1, alignSelf: "flex-end", marginTop: 10, marginRight: 10 }}
+                                    name="close" size={30} color="#900"
+                                    onPress={() => {
+                                        this.setState({ modalSelectRefeicaoBase: !this.state.modalSelectRefeicaoBase })
+                                    }} />
+                                <Text style={{ fontFamily: "Jam", fontSize: 20, textAlign: "center", padding: 10 }}>
+                                    Os alimentos da refeição selecionada, serão adicionados a sua lista de alimentos deste registro
+                                    </Text>
+                                <View style={styles.ModalBuscaContainer}>
+                                    <TextInput
+                                        style={{ borderColor: 'gray', borderWidth: 1, padding: 5, flex: 2 }}
+                                        onChangeText={inputRefeicaoBaseBusca => this.setState({ inputRefeicaoBaseBusca })}
+                                        value={this.state.inputRefeicaoBaseBusca}
+                                    />
+                                    <TouchableOpacity style={{ flex: 1, marginLeft: 20, borderWidth: 2, borderBottomColor: "black", borderRadius: 20, display: "flex", alignContent: 'center', justifyContent: "center", textAlign: "center" }}
+                                        onPress={() => { console.log(this.state.inputRefeicaoBaseBusca); this._buscarRefeicaoBasePorNome(this.state.inputRefeicaoBaseBusca); }}>
+                                        <Text style={font.textoPickerRow}>Buscar</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <FlatList
+                                    extraData={this.state}
+                                    data={this.state.filterRefeicaoBases.length === 0 ? this.state.RefeicoesBase : this.state.filterRefeicaoBases}
+                                    renderItem={({ item: rowData, index: id }) => {
+                                        return (
+                                            <TouchableOpacity onPress={() => { this.setState({ RefeicoesBaseSelecionada: rowData, modalInfoRefeicaoBase: true }) }}
+                                                style={{ marginTop: 20, flex: 1, width: width, backgroundColor: id % 2 === 0 ? "#ccc" : "#fff" }}>
+                                                <View style={{ flexDirection: "row" }}>
+                                                    <View style={{ width: width * 0.3, textAlign: "center", flex: 1, justifyContent: "center", paddingLeft: 10 }}>
+                                                        <Text style={[font.textoPickerRow, { color: "gray", textAlign: "left" }]}>Apelido:   </Text>
+                                                        <Text style={font.textoPickerRow}>{rowData.apelido}</Text>
+                                                    </View>
+                                                    <View style={{ width: width * 0.6, textAlign: "center", justifyContent: "center", paddingRight: 10 }}>
+                                                        <Text style={[font.textoPickerRow, { color: "gray", textAlign: "left" }]}>Alimentos:   </Text>
+                                                        {rowData.alimentos[0] &&
+                                                            <Text style={[font.textoPickerRow, { textAlign: "left" }]}> -  {rowData.alimentos[0]}</Text>
+                                                        }
+                                                        {rowData.alimentos[1] &&
+                                                            <Text style={[font.textoPickerRow, { textAlign: "left" }]}> -  {rowData.alimentos[1]}</Text>
+                                                        }
+                                                        {rowData.alimentos[2] &&
+                                                            <Text style={[font.textoPickerRow, { textAlign: "left" }]}> -  {rowData.alimentos[2]}</Text>
+                                                        }
+                                                        {rowData.alimentos[3] &&
+                                                            <Text style={[font.textoPickerRow, { textAlign: "left" }]}> -  {rowData.alimentos[3]}</Text>
+                                                        }
+                                                        {rowData.alimentos[4] &&
+                                                            <Text style={font.textoPickerRow}>...</Text>
+                                                        }
+                                                    </View>
+                                                </View>
+                                            </TouchableOpacity>
+                                        );
+                                    }}
+                                    keyExtractor={(item, index) => index.toString()}
+                                />
+                            </View>
+                        </View>
+                    </Modal>
+
+                    {/* Modal RefeicaoBase ^^^^^^ */}
+
+
+                    {/* Modal RefeicaoBaseInfo VVVVVVV */}
+
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.state.modalInfoRefeicaoBase}
+                    >
+                        <View style={{ height: height, width: width, justifyContent: "center", alignItems: "center", backgroundColor: "#ccc" }}                                                    >
+                            <View style={[styles.modalSelect, { height: height * 0.9 }]}>
+                                <Icon style={{ zIndex: 1, alignSelf: "flex-end", marginTop: 10, marginRight: 10 }}
+                                    name="close" size={30} color="#900"
+                                    onPress={() => {
+                                        this.setState({ modalInfoRefeicaoBase: !this.state.modalInfoRefeicaoBase })
+                                    }} />
+                                <Text style={{ fontFamily: "Jam", fontSize: 20, textAlign: "center", padding: 10 }}>
+                                    Caso confirmada a refeição base, seus respectivos alimentos serão adicionados a sua lista de alimentos deste registro.
+                                </Text>
+                                <View style={{ marginTop: 20, marginBottom: 20, flex: 1, width: width - 4, backgroundColor: "#ccc", flexDirection: "row", padding: 10 }}>
+                                    <View style={{ textAlign: "center", flex: 1, justifyContent: "center", paddingLeft: 10 }}>
+                                        <Text style={[font.textoPickerRow, { color: "gray", textAlign: "left" }]}>Apelido:   </Text>
+                                        <Text style={font.textoPickerRow}>{this.state.RefeicoesBaseSelecionada.apelido}</Text>
+                                    </View>
+                                    <View style={{ flex: 2, textAlign: "center", justifyContent: "center", paddingRight: 10 }}>
+                                        <Text style={[font.textoPickerRow, { color: "gray", textAlign: "left" }]}>Lista de alimentos registrados:   </Text>
+                                        <FlatList
+                                            extraData={this.state}
+                                            data={this.state.RefeicoesBaseSelecionada.alimentos}
+                                            renderItem={({ item: rowData }) => {
+                                                return (
+                                                    <Text style={[font.textoPickerRow, { textAlign: "left" }]}> -  {rowData}</Text>
+                                                );
+                                            }}
+                                            keyExtractor={(item, index) => index.toString()}
+                                        />
+                                    </View>
+                                </View>
+                                <BotaoPadrao onPress={() => this._concatAlimentosRefeicao(this.state.RefeicoesBaseSelecionada.alimentos)}
+                                    font={[font.btnTextoGrande, { fontFamily: "Jam", padding: 10 }]}
+                                    title="Confirmar" wid={40}></BotaoPadrao>
+                            </View>
+                        </View>
+                    </Modal>
+
+                    {/* Modal RefeicaoBase ^^^^^^ */}
+
+
                 </View>
             </ImageBackground >
         );
@@ -504,6 +719,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         paddingLeft: 40,
         paddingRight: 40,
+        paddingBottom: 20
     },
 
 });
